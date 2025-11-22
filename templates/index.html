@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
 <head>
   <meta charset="utf-8" />
@@ -7,81 +7,109 @@
   <link rel="icon" href="/static/icon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/static/styles.css" />
 
-  <!-- 🔐 Google Verification -->
+  <!-- Google verification -->
   <meta name="google-site-verification" content="googlea0a4f5eb7ece50b3">
 
-  <!-- 📌 SEO -->
-  <meta name="description" content="Онлайн калькулятор с ИИ — объясняет решение, считает дроби, проценты, корни, уравнения, логарифмы и сложные выражения.">
-  <meta name="keywords" content="калькулятор, калькулятор онлайн, калькулятор с объяснением, калькулятор дробей, калькулятор процентов, решение уравнений, умный калькулятор, математический калькулятор">
+  <!-- SEO -->
+  <meta name="description" content="Liquid Calculator — онлайн калькулятор с ИИ-помощником. Считает примеры, дроби, проценты и объясняет решение.">
+  <meta name="keywords" content="калькулятор, онлайн калькулятор, калькулятор с объяснением, калькулятор дробей, калькулятор процентов, Liquid Calculator">
 
-  <!-- 🎨 OpenGraph -->
-  <meta property="og:title" content="Liquid Calculator — Калькулятор с объяснением">
-  <meta property="og:description" content="Онлайн калькулятор с ИИ-помощником. Решает и объясняет.">
+  <!-- Open Graph -->
+  <meta property="og:title" content="Liquid Calculator — калькулятор с ИИ объяснением">
+  <meta property="og:description" content="Удобный стеклянный калькулятор в стиле iOS 26 с ИИ-помощником.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://liquid-calculator.onrender.com">
-  <meta property="og:image" content="https://i.imgur.com/Q7dA8dQ.png">
-</head>
 
+</head>
 <body>
-  <div class="header-bar">
-    <div class="logo">
-      <img src="/static/icon.svg" class="logo-icon">
-      <span class="logo-text">Liquid Calculator</span>
-      <span class="sub">Python edition • Liquid Glass</span>
-    </div>
-    <div class="toggle-block">
-      <button class="toggle-ai" id="toggleAI">ИИ</button>
-      <button class="toggle-theme" id="toggleTheme"></button>
-    </div>
+  <div class="bg">
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="blob b3"></div>
+    <div class="grain"></div>
   </div>
 
-  <main class="container">
-    <div class="calculator">
-      <div class="display" id="display">0</div>
-      <div class="buttons">
-        <button class="btn function" data-value="AC">AC</button>
-        <button class="btn function" data-value="⌫">⌫</button>
-        <button class="btn operator" data-value="%">%</button>
-        <button class="btn operator" data-value="÷">÷</button>
-
-        <button class="btn number" data-value="7">7</button>
-        <button class="btn number" data-value="8">8</button>
-        <button class="btn number" data-value="9">9</button>
-        <button class="btn operator" data-value="×">×</button>
-
-        <button class="btn number" data-value="4">4</button>
-        <button class="btn number" data-value="5">5</button>
-        <button class="btn number" data-value="6">6</button>
-        <button class="btn operator" data-value="-">-</button>
-
-        <button class="btn number" data-value="1">1</button>
-        <button class="btn number" data-value="2">2</button>
-        <button class="btn number" data-value="3">3</button>
-        <button class="btn operator" data-value="+">+</button>
-
-        <button class="btn number zero" data-value="0">0</button>
-        <button class="btn number" data-value=".">.</button>
-        <button class="btn equal" data-value="=">=</button>
+  <main class="wrap">
+    <header class="topbar glass">
+      <div class="brand">
+        <img src="/static/icon.svg" alt="Liquid Calculator logo" class="logo">
+        <div class="brand-text">
+          <div class="title">Liquid Calculator</div>
+          <div class="subtitle">Python edition • iOS 26 glass</div>
+        </div>
       </div>
 
-      <p class="hint">
-        Поддержка: скобки (), степень ^, проценты %, π, e, sin/cos/tan/log/sqrt. <br>
-        ИИ понимает текст: «дробь 3.5 в обычную», «реши 2x+3=7».
-      </p>
-    </div>
+      <div class="top-actions">
+        <button id="aiOpen" class="chip glass-btn" title="ИИ помощник [beta]">ИИ</button>
+        <button id="themeToggle" class="chip glass-btn" title="Сменить тему">◐</button>
+      </div>
+    </header>
 
-    <div class="ai-module hidden" id="aiModule">
-      <div class="ai-header">
-        <span>• ИИ-помощник</span>
-        <button class="ai-close" id="closeAI">Закрыть</button>
+    <section class="calc glass">
+      <div class="display">
+        <div id="history" class="history"></div>
+        <div id="expression" class="expression">0</div>
       </div>
-      <div class="ai-input">
-        <input type="text" placeholder="Например: дробь 3.5 в обычную, 20% от 100" id="aiQuery">
-        <button id="aiExplain">Объяснить</button>
+
+      <div class="keys">
+        <button class="key glass-btn soft" data-action="clear">AC</button>
+        <button class="key glass-btn soft" data-action="back">⌫</button>
+        <button class="key glass-btn soft" data-value="%">%</button>
+        <button class="key glass-btn op" data-value="÷">÷</button>
+
+        <button class="key glass-btn" data-value="7">7</button>
+        <button class="key glass-btn" data-value="8">8</button>
+        <button class="key glass-btn" data-value="9">9</button>
+        <button class="key glass-btn op" data-value="×">×</button>
+
+        <button class="key glass-btn" data-value="4">4</button>
+        <button class="key glass-btn" data-value="5">5</button>
+        <button class="key glass-btn" data-value="6">6</button>
+        <button class="key glass-btn op" data-value="−">−</button>
+
+        <button class="key glass-btn" data-value="1">1</button>
+        <button class="key glass-btn" data-value="2">2</button>
+        <button class="key glass-btn" data-value="3">3</button>
+        <button class="key glass-btn op" data-value="+">+</button>
+
+        <button class="key glass-btn span2" data-value="0">0</button>
+        <button class="key glass-btn" data-value=".">.</button>
+        <button class="key glass-btn equals" data-action="equals">=</button>
       </div>
-      <div class="ai-steps" id="aiSteps"></div>
-    </div>
+
+      <div class="hint">
+        Поддержка: скобки (), степени ^, проценты %, pi, e, sin/cos/tan/log/sqrt.<br>
+        Можно писать деление как /, ÷ или : (например 10:3).<br>
+        ИИ понимает текст: «дробь 3.8112 в обычную», «20 процентов от 150», «реши 2x+3=7».
+      </div>
+    </section>
+
+    <footer class="footer">
+      © 2025 • Liquid Calculator — Crafted with Python & SymPy
+    </footer>
   </main>
+
+  <!-- AI Assistant Modal Overlay -->
+  <div id="aiOverlay" class="ai-overlay hidden" aria-hidden="true">
+    <section id="aiSheet" class="ai-sheet glass" role="dialog" aria-modal="true">
+      <div class="ai-head">
+        <div class="ai-title">
+          <div class="ai-dot"></div>
+          ИИ-помощник
+        </div>
+        <button id="aiClose" class="chip glass-btn">Закрыть</button>
+      </div>
+
+      <div class="ai-body">
+        <div class="ai-input-wrap">
+          <input id="aiInput" class="ai-input" placeholder="Например: дробь 3.8112 в обычную, 20 процентов от 150, реши 2x+3=7" />
+          <button id="aiSolve" class="ai-solve glass-btn">Объяснить</button>
+        </div>
+
+        <div id="aiOutput" class="ai-output"></div>
+      </div>
+    </section>
+  </div>
 
   <script src="/static/app.js"></script>
 </body>
